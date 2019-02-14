@@ -159,16 +159,6 @@ services:
       networks:
         - backend
 
-### MongoDB ##############################################
-    mongo:
-      build: ./mongo
-      ports:
-        - "${MONGODB_PORT}:27017"
-      volumes:
-        - ${DATA_PATH_HOST}/mongo:/data/db
-      networks:
-        - backend
-
 ### Redis ################################################
     redis:
       build: ./redis
