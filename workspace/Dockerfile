@@ -336,6 +336,7 @@ USER laradock
 ARG NODE_VERSION=stable
 ENV NODE_VERSION ${NODE_VERSION}
 ARG INSTALL_NODE=false
+ARG INSTALL_APIDOC=false
 ARG NPM_REGISTRY
 ENV NPM_REGISTRY ${NPM_REGISTRY}
 ENV NVM_DIR /home/laradock/.nvm
@@ -350,7 +351,10 @@ RUN if [ ${INSTALL_NODE} = true ]; then \
         if [ ${NPM_REGISTRY} ]; then \
         npm config set registry ${NPM_REGISTRY} \
         ;fi && \
-        npm install -g gulp bower vue-cli \
+        npm install -g gulp bower vue-cli && \
+        if [ ${INSTALL_APIDOC} = true ]; then \
+        npm install -g apidoc \
+        ;fi \
 ;fi
 
 # Wouldn't execute when added to the RUN statement in the above block
